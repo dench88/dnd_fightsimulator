@@ -1,0 +1,12 @@
+name,dex,ac,hp,resistance,initiative,numattacks,tohit1,damdie1,damrolls1,dambonus1,type
+surina,0,19,56,0,0,1,7,6,2,5,player
+alton,5,15,44,0,0,1,5,8,1,5,player
+nissa,2,12,32,0,0,3,7,6,2,0,player
+kellen,2,12,32,0,0,1,5,8,3,0,player
+arizma,2,15,30,0,0,1,5,8,3,0,player
+dench,1,16,56,1,0,1,8,8,1,8,player
+doppelganger1,4,14,52,0,0,2,6,6,1,4,monster
+doppelganger2,4,14,52,0,0,2,6,6,1,4,monster
+doppelganger3,4,14,52,0,0,2,6,6,1,4,monster
+doppelganger4,4,14,52,0,0,2,6,6,1,4,monster
+doppelganger5,4,14,52,0,0,2,6,6,1,4,monster
