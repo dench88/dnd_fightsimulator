@@ -6,12 +6,12 @@ n=int(input('How many fight simulations are we running?'))
 reruns=0
 wins=0
 for reruns in range(0,n):
-    csv_loc = 'C:/Users/dream/iCloudDrive/iCloud~com~omz-software~Pythonista3/DND/fighterstats.csv'
+    csv_loc = 'C:/Users/blablabla/DND/fighterstats.csv' # UPDATE THIS WITH THE FILE PATH FOR THE CSV
     alls = pd.read_csv(csv_loc, sep=',', header=0) 
     ps = alls[alls['type'] == 'player']
     ms = alls[alls['type'] == 'monster']
 
-    def setfightgroups(playernames,monsternames):
+    def setfightgroups(playernames,monsternames): # Creates a dictionary containing the groups of fighters who will fight one another
         pnames = list(playernames)
         mnames = list(monsternames)
         random.shuffle(mnames)
@@ -35,7 +35,7 @@ for reruns in range(0,n):
             fightgroups = dict(zip(pnames, mnames))
             return fightgroups
 
-    def invert(a):
+    def invert(a):  #Inverts the fightgroup to show the members of the smaller group as the dictionary keys. This is more useful
         inverted_dict = dict()
         for key, value in a.items():
             inverted_dict.setdefault(value, list()).append(key)
@@ -43,9 +43,9 @@ for reruns in range(0,n):
 
     fightgroups = setfightgroups(ps["name"],ms["name"])
     inverted_fgroups = invert(fightgroups)
-    print(f'The INVERTED fightgroups are as follows:\n {inverted_fgroups}\n')  #               PRINT INVERTED_FG
+    print(f'The INVERTED fightgroups are as follows:\n {inverted_fgroups}\n')  
 
-    def rollinitiative():
+    def rollinitiative():    # rolls initiative for every fighter and updates the'initiative' column in the dataframe (representing the csv)
         for i in range(0,len(alls["name"])):
             alls.iat[i,5] = random.randint(1,20) + alls.iloc[i,1]
         initiative_dict = {}
@@ -55,15 +55,15 @@ for reruns in range(0,n):
 
     initiative_dict = rollinitiative()
     initiative_sorted = dict(sorted(initiative_dict.items(), key=lambda item: item[1], reverse=True))
-    order_of_play = list(initiative_sorted)
+    order_of_play = list(initiative_sorted)  # Important - This creates a list that gives the order of attacks resulting from initiative rolls
     print(f'Order of play is \n {order_of_play}\n')
 
-    def select_target(attackingfighter):
+    def select_target(attackingfighter):  # this selects your target to attack next
         izPresent = attackingfighter in fightgroups
         izPresent2 = attackingfighter in inverted_fgroups
         if izPresent == True:
             if type(fightgroups[attackingfighter]) == str:
-                ttarget = fightgroups[attackingfighter]
+                ttarget = fightgroups[attackingfighter] # I use ttarget here to distinguish from target the global variable - because. um i thought it might avoid a problem maybe but no idea
                 return ttarget
             else:
                 ttarget = random.choice(fightgroups[attackingfighter])
@@ -78,7 +78,7 @@ for reruns in range(0,n):
         else:
             pass
         
-    def rolltohit(attackertohit, targetac):
+    def rolltohit(attackertohit, targetac):  #self explanatory - roll to hit
         attackdieroll = random.randint(1,20)
         attackroll = attackdieroll + attackertohit
         if attackroll == 20 + attackertohit:
@@ -91,15 +91,15 @@ for reruns in range(0,n):
             print(f'Rolled {attackdieroll} plus {attackertohit}: Miss!')
             return 0
 
-    def damageroll(damdie, dierolls, dambonus):
+    def damageroll(damdie, dierolls, dambonus):  #self explanatory - roll damage
         return random.randint(1, damdie) * dierolls + dambonus 
 
-    PIA = list(ps['name'])
-    MIA = list(ms['name'])
-    deathcount = 0
+    PIA = list(ps['name']) # Creates a list of Players In Action (PIA) - that is updated as players die
+    MIA = list(ms['name']) # Same for monsters
+    deathcount = 0 #strictly speaking this is not death - but unconsciousness
     roundcount=1
 
-    while True:
+    while True:  # This is the main code
         print(f'\nROUND {roundcount}!')
         roundcount += 1
         print(f'Fight is now \n{PIA} \nvs\n{MIA}\nAnd inv_fg is:\n{inverted_fgroups}')
