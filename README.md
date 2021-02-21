@@ -1,7 +1,10 @@
 # dnd_fightsimulator
+!! This program is not optimised. Im very new to this. Suggestions to improve welcomed !!
 Written in python using pandas.
 Simple fight simulator for two opposing groups of fighters in DND.
-Fill in the fighterstats.csv file with your players' names and stats and the monsters' names and stats. When you hit run it will ask how many fights you want to simulate. I suggest maybe 20 or so, or 1. It will give you a probability of winning vs losing (ie all players being knocked out).
+Fill in the fighterstats.csv file with your players' names and stats and the monsters' names and stats. Just add and delete rows to suit the fight you want to simulate.
+In the py file you will need to change the path file to the csv file 
+When you hit run it will ask how many fights you want to simulate. I suggest maybe 20 or so, or 1. It will give you a probability of winning vs losing (ie all players being knocked out).
 Good for DMs wanting to get a solid feel for whether a group of monsters is appropriate challenge for a specific group of players/characters.
 This is simple and assumes only one type of attack per fighter, which is way off for spell casters and fighters with special abilities etc - but it helps me as DM.
 Please be kind - Ive been programming for no longer than one month.
