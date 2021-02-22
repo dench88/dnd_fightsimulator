@@ -21,3 +21,5 @@ damdie1: The die used for damage (for 2d6 this is 6)
 damrolls: The number of rolls for damdie1 (for 2d6 this is 2)
 dambonus1: damage bonus
 type: player or monster. No other input will work.
+
+This project is licensed under the terms of the MIT license.
